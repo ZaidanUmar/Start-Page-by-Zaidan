@@ -1,0 +1,227 @@
+/* styles.css */
+/* BASIC RESET & GLOBAL STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body {
+    height: 100%;
+}
+body {
+    font-family: 'Fira Code', monospace;
+    background: #1d1f21; /* Fallback background */
+    color: #d4d4d4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* WAVY BACKGROUND (approx) */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+        radial-gradient(90rem circle at 30% 30%, #361f45 20%, #2c183b 60%, #1d1f21 80%),
+        radial-gradient(50rem circle at 70% 70%, #ca005d 20%, #93234f 40%, transparent 70%),
+        linear-gradient(120deg, rgba(94, 32, 96, 0.8), rgba(227, 56, 84, 0.6));
+    background-blend-mode: overlay;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* CONTENT WRAPPER (blurry background and grid layout) */
+.content-wrapper {
+    background: rgba(0, 0, 0, 0.10); /* Reduced opacity from 0.15 to 0.10 */
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    border-radius: 8px;
+    padding: 2rem 3rem 0rem 3rem; /* Top, Right, Bottom, Left */
+    width: 800px; /* Adjusted width for smaller main content */
+    max-width: 95vw; /* Ensure responsiveness */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    row-gap: 1.5rem; /* Increased vertical gap between rows */
+    column-gap: 0.5rem; /* Maintained horizontal gap */
+    align-items: start;
+    justify-items: start;
+}
+
+/* CATEGORY */
+.category {
+    transition: opacity 0.2s ease;
+}
+.category h2 {
+    font-weight: 600;
+    margin-bottom: 0.6rem; /* Further reduced margin-bottom */
+    font-size: 1.2rem;
+    transition: opacity 0.2s ease;
+}
+.category ul {
+    list-style: none;
+    line-height: 1.4; /* Further reduced line-height */
+}
+
+/* Heading colors */
+.category.green h2 { color: #00ffa2; }
+.category.pink h2  { color: #ff567f; }
+.category.purple h2 { color: #b196ff; }
+.category.blue h2  { color: #42f0ff; }
+.category.teal h2  { color: #00d3b0; }
+.category.orange h2 { color: #ffb347; }
+
+/* PROMPT SEARCH (spanning all columns) */
+.prompt {
+    grid-column: 1 / -1; /* Span all columns */
+    width: 100%;
+    margin-top: -0.5rem; /* Negative margin to reduce space */
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    /* Removed background, padding, and border-radius to eliminate separate box */
+}
+.prompt-label {
+    color: #33ff66;
+    margin-right: 0.2rem; /* Increased margin-right for spacing */
+    white-space: nowrap;
+}
+.prompt-input {
+    border: none;
+    background: transparent;
+    color: #d4d4d4;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    outline: none;
+    flex: 1;
+}
+.prompt-input::placeholder {
+    color: #a9a9a9;
+}
+
+/* HIGHLIGHT for matched links */
+/* Removed the general highlight color */
+.highlight {
+    font-weight: 600;
+}
+
+/* ACTIVE HIGHLIGHT for cycling */
+.active-highlight {
+    background-color: rgba(255, 255, 255, 0.2); /* Example styling */
+    color: #ffffff;
+    border-radius: 4px;
+}
+
+/* DIM everything else: links, headings, categories */
+.dim {
+    opacity: 0.3;
+}
+
+/* Placeholder Categories (invisible to maintain grid structure) */
+.placeholder {
+    visibility: hidden;
+    height: 0; /* Ensure placeholders don't take vertical space */
+    margin: 0;
+    padding: 0;
+}
+.placeholder h2,
+.placeholder ul {
+    display: none; /* Remove content display */
+}
+
+/* Two-Column Layout for Specific Category */
+.category.two-columns ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Creates two equal columns */
+    gap: 0.5rem; /* Adjust spacing between items as needed */
+}
+
+/* Three-Column Layout for Specific Category */
+.category.three-columns ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Creates three equal columns */
+    gap: 0.5rem; /* Adjust spacing between items as needed */
+}
+
+/* Justify the links for multi-column categories */
+.category.two-columns ul li,
+.category.three-columns ul li {
+    display: flex;
+    justify-content: center; /* Center links within their grid cells */
+}
+
+/* Ensure Links Take Full Width and Center Text */
+.category.two-columns ul li a,
+.category.three-columns ul li a {
+    display: block;
+    width: 100%;
+    text-align: center; /* Center text within links */
+}
+
+/* Responsive Adjustment for Two-Columns and Three-Columns */
+@media (max-width: 600px) {
+    .category.two-columns ul,
+    .category.three-columns ul {
+        grid-template-columns: 1fr; /* Stacks items vertically on small screens */
+    }
+}
+
+/* Responsive Adjustments for Overall Layout */
+@media (max-width: 1024px) {
+    .content-wrapper {
+        width: 90vw;
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+        row-gap: 1.2rem; /* Adjust row-gap for medium screens */
+        column-gap: 0.5rem; /* Maintain column-gap */
+    }
+}
+
+@media (max-width: 600px) {
+    .content-wrapper {
+        width: 100%;
+        grid-template-columns: 1fr; /* 1 column on small screens */
+        row-gap: 1rem; /* Adjust row-gap for small screens */
+        column-gap: 0.3rem; /* Further reduce column-gap */
+        padding: 2rem 2rem 0.2rem 2rem; /* Adjust padding */
+    }
+    .prompt {
+        margin-top: -0.3rem; /* Further reduce margin-top */
+    }
+    .prompt-label {
+        margin-right: 0.05rem; /* Further reduce margin-right */
+    }
+}
+
+/* Optional: Hover Effects for Links */
+.category ul li a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+    transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+/* 4. Category-Specific Highlight Colors */
+.category.green a.highlight { 
+    color: #00ffa2 !important; /* Matches .category.green h2 color */
+}
+.category.pink a.highlight { 
+    color: #ff567f !important; /* Matches .category.pink h2 color */
+}
+.category.purple a.highlight { 
+    color: #b196ff !important; /* Matches .category.purple h2 color */
+}
+.category.blue a.highlight { 
+    color: #42f0ff !important; /* Matches .category.blue h2 color */
+}
+.category.teal a.highlight { 
+    color: #00d3b0 !important; /* Matches .category.teal h2 color */
+}
+.category.orange a.highlight { 
+    color: #ffb347 !important; /* Matches .category.orange h2 color */
+}

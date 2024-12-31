@@ -1,0 +1,67 @@
+# Start Page
+
+A customizable start page built with HTML, CSS, and JavaScript, offering multiple columns and configurable link behaviors. Based upon [Excalith's Start Page](https://github.com/excalith/excalith-start-page).
+
+## Features
+
+- **Multiple Column Layouts**: Supports two and three-column layouts for better organization.
+- **Configurable Link Behavior**: Choose whether links open in the same tab or a new tab.
+- **Real-Time Search**: Instant highlighting and dimming of links based on your search query.
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [Acknowledgements](#acknowledgements)
+- [License](#license)
+
+## Installation
+
+1. **Clone the Repository**
+
+   Just download or clone and launch index.html.
+
+## Configuration
+
+Customize the behavior of the start page by editing the configuration variables in the index.html file.
+
+<!-- Configuration Variables -->
+<script>
+  const openClicksInNewTab = false; // Set to true to open links in a new tab
+  const openSearchInNewTab = false; // Set to true to open search results in a new tab
+</script>
+
+
+## Usage
+
+    Navigating Links and search:
+
+    Click on any link to navigate to the desired page based on your configuration.
+
+    Use the search box to open links or google search.
+
+    If the search term matches the title, it opens the link. If not, it does a google search. 
+
+    Click anywhere outside the content area to reset the search and remove all highlights and dims.
+
+    Hit tab to autocomplete.
+
+## Contributing
+
+    Contributions are welcome! I'm not a web developer so won't have much time (read skills) to fix any bugs but will try to keep this up to date.
+
+## Acknowledgements
+
+    Original Design by Excalith.
+
+    I want to extend a massive thank you to Excalith (Reddit user u/excalith) for the original design inspiration.
+
+    ChatGPT Assistance
+
+    Heaviliy relied on this as I'm not a web developer.
+
+## License
+
+This project is open-source and available under the MIT License.
